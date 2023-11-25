@@ -26,9 +26,9 @@ function Board({ xIsNext, squares, onPlay }) {
     const winner = calculateWinner(squares);
     let status;
     if (winner) {
-        status = "Winner: " + winner;
+        status = winner + " wins!";
     } else {
-        status = "Next player: " + (xIsNext ? "X" : "O");
+        status = "Player " + (xIsNext ? "X" : "O") + " turn:";
     }
 
     return (
@@ -53,10 +53,9 @@ function Board({ xIsNext, squares, onPlay }) {
     );
 }
 
-function Reset() {}
-
 export default function Game() {
-    const [history, setHistory] = useState([Array(9).fill(null)]);
+    let [history, setHistory] = useState([Array(9).fill(null)]);
+    const initHistory = history;
     const [currentMove, setCurrentMove] = useState(0);
     const xIsNext = currentMove % 2 === 0;
     const currentSquares = history[currentMove];
@@ -69,6 +68,11 @@ export default function Game() {
 
     function jumpTo(nextMove) {
         setCurrentMove(nextMove);
+    }
+
+    function reset() {
+        setCurrentMove(0);
+        history = initHistory;
     }
 
     const moves = history.map((squares, move) => {
@@ -89,14 +93,15 @@ export default function Game() {
         <div className="game">
             <div className="game-board">
                 <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
-                <div className="game-reset" onClick={Reset}>
-                    Reset Game
-                    <Reset />
+                <div className="status mt-2">
+                    <button type="button" onClick={() => reset()}>
+                        Restart Game
+                    </button>
                 </div>
             </div>
-            <div className="game-info">
+            {/* <div className="game-info">
                 <ol>{moves}</ol>
-            </div>
+            </div> */}
         </div>
     );
 }
