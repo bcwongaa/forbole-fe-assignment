@@ -53,6 +53,8 @@ function Board({ xIsNext, squares, onPlay }) {
     );
 }
 
+function Reset() {}
+
 export default function Game() {
     const [history, setHistory] = useState([Array(9).fill(null)]);
     const [currentMove, setCurrentMove] = useState(0);
@@ -87,6 +89,10 @@ export default function Game() {
         <div className="game">
             <div className="game-board">
                 <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+                <div className="game-reset" onClick={Reset}>
+                    Reset Game
+                    <Reset />
+                </div>
             </div>
             <div className="game-info">
                 <ol>{moves}</ol>
