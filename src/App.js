@@ -82,7 +82,7 @@ export default function Game() {
       localStorage.setItem('history', JSON.stringify(history));
       localStorage.setItem('currentMove', currentMove);
     }
-  }, [history]);
+  }, [history, currentMove, gameLoad]);
 
   function handlePlay(nextSquares) {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
@@ -130,4 +130,3 @@ function calculateWinner(squares) {
   }
   return null;
 }
-
