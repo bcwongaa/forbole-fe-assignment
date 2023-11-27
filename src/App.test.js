@@ -13,7 +13,6 @@ test('User clicks the boards and wins', () => {
   const { getAllByRole } = render(<App />);
   const squares = getAllByRole('button');
 
-  // 9 box with 1 restart button
   fireEvent.click(squares[0]);
   fireEvent.click(squares[3]);
   fireEvent.click(squares[1]);
@@ -27,7 +26,6 @@ test('User clicks the reset should clear the board', () => {
   const { getAllByRole } = render(<App />);
   const squares = getAllByRole('button');
 
-  // 9 box with 1 restart button
   fireEvent.click(squares[0]);
   fireEvent.click(squares[3]);
   fireEvent.click(squares[1]);
@@ -43,7 +41,6 @@ test('Reload should keeps the boards status', () => {
   const { getAllByRole } = render(<App />);
   const squares = getAllByRole('button');
 
-  // 9 box with 1 restart button
   fireEvent.click(squares[0]);
   fireEvent.click(squares[3]);
   fireEvent.click(squares[1]);
